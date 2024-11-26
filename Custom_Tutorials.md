@@ -58,7 +58,9 @@ Secret* : Paste your token.
 
     - send_term: This will determine how up-to-date your paper should be sent. Default is `'1'`.
 
-    - abstract: Type False for enable abstract in email. Default is `True`.
+    - abstract: Type False for enable abstract in email. Default is `False`.
+
+        - If you set abstract to True, be careful not to exceed the character limit (65536).
 
 
 2. set `keywords.yaml` file.

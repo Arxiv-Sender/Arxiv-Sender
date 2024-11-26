@@ -29,4 +29,4 @@ jobs:
         search_limitation: '9999' # This is the number of papers to search. Feel free to change it, but the larger the better.
         send_limitation: '100' # This is the limit on the number of papers to upload per email.
         send_term: '1' # This will determine how up-to-date your paper should be sent.
-        abstract: 'True' # Type False for enable abstract in email
+        abstract: 'False' # Type False for enable abstract in email
