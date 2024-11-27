@@ -26,7 +26,7 @@ jobs:
         token : ${{ secrets.MY_GITHUB_TOKEN }} # You MUST SET SECRET ENVIRONMENTS. Do NOT Change This.
         organization: 'Arxiv-Sender' # You MUST SET HERE to same as this organization.
         repository: 'Arxiv-Sender' # You MUST SET HERE to same as this repository.
-        search_limitation: '9999' # This is the number of papers to search. Feel free to change it, but the larger the better.
+        search_limitation: '1000' # This is the number of papers to search. Feel free to change it, but the larger the better.
         send_limitation: '100' # This is the limit on the number of papers to upload per email.
         send_term: '1' # This will determine how up-to-date your paper should be sent.
         abstract: 'False' # Type False for enable abstract in email
