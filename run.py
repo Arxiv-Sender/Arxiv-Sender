@@ -61,5 +61,5 @@ if __name__ == "__main__":
 
     title = str(today) + ", Papers for " + keywords
     body = generate_paper_list(search, send_limitation, send_term)
-    print(len(body))
+    print(len(body), abstract)
     repo.create_issue(title=title, body=body)
