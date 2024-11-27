@@ -2,7 +2,7 @@ name: update_issue
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # This is the argument for set sending period. You can refer to https://crontab.guru and edit it there.
+    - cron: '0 11 * * *' # This is the argument for set sending period. You can refer to https://crontab.guru and edit it there.
 jobs:
   build:
     runs-on: ubuntu-latest
