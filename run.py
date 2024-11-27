@@ -13,7 +13,11 @@ send_limitation = int(os.getenv("send_limitation"))
 send_term = int(os.getenv("send_term"))
 org = os.getenv("organization")
 repo = os.getenv("repository")
-abstract = bool(os.getenv("abstract"))
+abstract = os.getenv("abstract")
+if abstract.lower() == 'false':
+    abstract = False
+else:
+    abstract = True
 
 today = datetime.datetime.now().date()
 
@@ -61,5 +65,4 @@ if __name__ == "__main__":
 
     title = str(today) + ", Papers for " + keywords
     body = generate_paper_list(search, send_limitation, send_term)
-    print(len(body), abstract)
     repo.create_issue(title=title, body=body)
