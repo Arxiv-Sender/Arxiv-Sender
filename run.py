@@ -10,7 +10,7 @@ import yaml
 token = os.getenv("token")
 search_limitation = int(os.getenv("search_limitation"))
 send_limitation = int(os.getenv("send_limitation"))
-send_term = int(os.getenv("send_term"))
+send_term = int(os.getenv("send_term")) + 1
 org = os.getenv("organization")
 repo = os.getenv("repository")
 abstract = os.getenv("abstract")
