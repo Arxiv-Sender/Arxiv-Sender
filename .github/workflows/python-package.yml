@@ -28,5 +28,5 @@ jobs:
         repository: 'Arxiv-Sender' # You MUST SET HERE to same as this repository.
         search_limitation: '1000' # This is the number of papers to search. Feel free to change it, but the larger the better.
         send_limitation: '100' # This is the limit on the number of papers to upload per email.
-        send_term: '1' # This will determine how up-to-date your paper should be sent.
+        send_term: '7' # This will determine how up-to-date your paper should be sent.
         abstract: 'False' # Type False for enable abstract in email
