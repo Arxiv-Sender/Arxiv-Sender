@@ -11,7 +11,10 @@ token = os.getenv("token")
 search_limitation = int(os.getenv("search_limitation"))
 send_limitation = int(os.getenv("send_limitation"))
 send_term = int(os.getenv("send_term")) + 1
-org = os.getenv("organization")
+try:
+    org = os.getenv("organization")
+except:
+    org = None
 repo = os.getenv("repository")
 abstract = os.getenv("abstract")
 if abstract.lower() == 'false':
@@ -49,7 +52,10 @@ def generate_keywords(keywords):
 
 if __name__ == "__main__":
     g = Github(token)
-    repo = g.get_organization(org).get_repo(repo)
+    try:
+        repo = g.get_organization(org).get_repo(repo)
+    except:
+        repo = g.get_user().get_repo(repo)
 
     with open('keywords.yaml') as f:
         config = yaml.load(f, Loader=yaml.FullLoader)
