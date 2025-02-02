@@ -48,4 +48,3 @@ jobs:
         send_limitation: '100'
         send_term: '7'
         abstract: 'False'
-        lang: 'ko'
