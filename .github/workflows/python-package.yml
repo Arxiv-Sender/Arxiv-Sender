@@ -2,31 +2,49 @@ name: update_issue
 
 on:
   schedule:
-    - cron: '0 11 * * *' # This is the argument for set sending period. You can refer to https://crontab.guru and edit it there.
+    - cron: '0 * * * 5' # 매일 11:00 UTC에 실행
+  workflow_dispatch: # 수동 실행 가능
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      
+
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: "3.10"
-    
+
+    - name: Cache Hugging Face models
+      id: cache-hf
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/huggingface
+        key: huggingface-${{ runner.os }}-${{ github.sha }}
+        restore-keys: |
+          huggingface-${{ runner.os }}-
+
     - name: Install requirements.txt
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    
-    - name: Run python
+
+    - name: Download model if not cached
+      if: steps.cache-hf.outputs.cache-hit != 'true'
+      run: |
+        python -c "from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer; \
+                   M2M100ForConditionalGeneration.from_pretrained('facebook/m2m100_418M'); \
+                   M2M100Tokenizer.from_pretrained('facebook/m2m100_418M')"
+
+    - name: Run python script
       run: |
         python run.py
       env:
-        token : ${{ secrets.MY_GITHUB_TOKEN }} # You MUST SET SECRET ENVIRONMENTS. Do NOT Change This.
-        organization: 'Arxiv-Sender' # You MUST SET HERE to same as this organization.
-        repository: 'Arxiv-Sender' # You MUST SET HERE to same as this repository.
-        search_limitation: '1000' # This is the number of papers to search. Feel free to change it, but the larger the better.
-        send_limitation: '100' # This is the limit on the number of papers to upload per email.
-        send_term: '7' # This will determine how up-to-date your paper should be sent.
-        abstract: 'False' # Type False for enable abstract in email
+        token: ${{ secrets.MY_GITHUB_TOKEN }}
+        organization: 'Arxiv-Sender'
+        repository: 'Arxiv-Sender'
+        search_limitation: '1000'
+        send_limitation: '100'
+        send_term: '7'
+        abstract: 'False'
