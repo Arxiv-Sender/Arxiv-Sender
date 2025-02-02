@@ -2,7 +2,7 @@ name: update_issue
 
 on:
   schedule:
-    - cron: '0 * * * 5' # 매일 11:00 UTC에 실행
+    - cron: '0 11 * * *' # 매일 11:00 UTC에 실행
   workflow_dispatch: # 수동 실행 가능
 
 jobs:
