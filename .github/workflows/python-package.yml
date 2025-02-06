@@ -21,13 +21,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Download model if not cached
-      if: steps.cache-hf.outputs.cache-hit != 'true'
-      run: |
-        python -c "from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer; \
-                   M2M100ForConditionalGeneration.from_pretrained('facebook/m2m100_418M'); \
-                   M2M100Tokenizer.from_pretrained('facebook/m2m100_418M')"
-
     - name: Run python script
       run: |
         python run.py
